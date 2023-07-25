@@ -23,7 +23,7 @@ class Trainer(models.Model):
     info = models.ForeignKey(User , on_delete=models.CASCADE)
     skills = models.ManyToManyField(Skills)
     description = models.TextField()
-    image = models.ImageField(upload_to='trainer', default='teacher.PNG')
+    image = models.ImageField(upload_to='trainer', default='teacher.png')
     twitter = models.CharField(max_length=255, default='#')
     facebook = models.CharField(max_length=255, default='#')
     instagram = models.CharField(max_length=255, default='#')
@@ -39,7 +39,7 @@ class Trainer(models.Model):
 
 
 class Course(models.Model):
-    image = models.ImageField(upload_to='course',default='default.JPG')
+    image = models.ImageField(upload_to='course',default='default.jpg')
     category = models.ManyToManyField(Category)
     title = models.CharField(max_length=100)
     content = models.TextField()
