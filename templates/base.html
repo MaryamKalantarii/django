@@ -43,17 +43,17 @@
     <header id="header" class="fixed-top">
       <div class="container d-flex align-items-center">
   
-        <h1 class="logo me-auto"><a href="index.html">Mentor</a></h1>
+        <h1 class="logo me-auto"><a href="{% url 'root:home' %}">Mentor</a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
-        <!-- <a href="index.html" class="logo me-auto"><img src="{% static 'assets/img/logo.png' %}" alt="" class="img-fluid"></a>-->
+        <!-- <a href="{% url 'root:home' %}" class="logo me-auto"><img src="{% static 'assets/img/logo.png' %}" alt="" class="img-fluid"></a>-->
   
         <nav id="navbar" class="navbar order-last order-lg-0">
           <ul>
-            <li><a class="active" href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="courses.html">Courses</a></li>
+            <li><a class="active" href="{% url 'root:home' %}">Home</a></li>
+            <li><a href="{% url 'root:about' %}">About</a></li>
+            <li><a href="{% url 'courses:courses' %}">Courses</a></li>
             <li><a href="trainers.html">Trainers</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="{% url 'root:contact' %}">Contact</a></li>
             <li class="dropdown"><a href="#"><span>Category</span> <i class="bi bi-chevron-down"></i></a>
               <ul>
                 <li><a href="#">Drop Down 1</a></li>
