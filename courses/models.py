@@ -1,8 +1,8 @@
 from django.db import models
-import datetime
 from django.contrib.auth.models import User
+import datetime
 
-# Create your models here.
+
 
 
 
@@ -58,5 +58,3 @@ class Course(models.Model):
     def __str__(self):
         return self.title
     
-
-
