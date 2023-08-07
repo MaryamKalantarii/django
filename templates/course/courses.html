@@ -43,7 +43,7 @@
                 <div class="trainer d-flex justify-content-between align-items-center">
                   <div class="trainer-profile d-flex align-items-center">
                     <img src={{cr.teacher.image.url}} class="img-fluid" alt="">
-                    <span>{{cr.teacher.info.username}}</span>
+                    <span><a href= {% url 'courses:course_teacher' teacher=cr.teacher.info.username %}> {{cr.teacher.info.username}}</a></span>
                   </div>
                   <div class="trainer-rank d-flex align-items-center">
                     <i class="bx bx-user"></i>&nbsp;{{cr.counted_views}}
