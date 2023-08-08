@@ -38,8 +38,8 @@
                   <p class="price">${{cr.price}}</p>
                 </div>
 
-                <h3><a href="course-details.html">{{cr.title}}</a></h3>
-                <p>{{cr.content}}</p>
+                <h3><a href="course-details.html">{{cr.capt}}</a></h3>
+                <p>{{cr.content|truncatechars:10}}</p>
                 <div class="trainer d-flex justify-content-between align-items-center">
                   <div class="trainer-profile d-flex align-items-center">
                     <img src={{cr.teacher.image.url}} class="img-fluid" alt="">
@@ -49,6 +49,7 @@
                     <i class="bx bx-user"></i>&nbsp;{{cr.counted_views}}
                     &nbsp;&nbsp;
                     <i class="bx bx-heart"></i>&nbsp;{{cr.counted_like}}
+                    <span>{{cr.schedule|date:'Y/ m/ d'}}</span>
                   </div>
                 </div>
               </div>

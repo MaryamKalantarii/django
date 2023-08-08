@@ -58,3 +58,6 @@ class Course(models.Model):
     def __str__(self):
         return self.title
     
+    def capt(self):
+        return self.title.capitalize()
+    
