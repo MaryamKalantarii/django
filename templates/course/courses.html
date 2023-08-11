@@ -71,19 +71,19 @@
       
       {% if courses.has_next and courses.has_previous %}
       <a href="?page={{first_page}}"><<</a>
-      <a href="#">{{first_page|add:"0"}}</a>
+      <a href="#">{{courses.previous_page_number}}</a>
       <a href="?page={{courses.previous_page_number}}"><  </a>
       <a href="#">{{courses.number}}</a>
       <a href="?page={{courses.next_page_number}}">></a>
-      <a href="#">{{first_page|add:"2"}}</a>
+      <a href="#">{{courses.next_page_number}}</a>
       <a href="?page={{last_page}}">>></a>
       {% elif courses.has_next %}
       <a href="?page={{courses.next_page_number}}">></a>
-      <a href="#">{{first_page|add:"1"}}</a>
+      <a href="#">{{courses.next_page_number}}</a>
       <a href="?page={{last_page}}">>></a>
       {% elif courses.has_previous %}
       <a href="?page={{first_page}}"><<</a>
-      <a href="#">{{first_page|add:"1"}}</a>
+      <a href="#">{{courses.previous_page_number}}</a>
       <a href="?page={{courses.previous_page_number}}"><  </a>
       {% endif %}
       
