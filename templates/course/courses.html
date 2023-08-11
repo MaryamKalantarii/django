@@ -65,7 +65,8 @@
     <div align="center" style="font-size:35px;">
       <style>
         .dimmed {
-            color: gray;
+            color: green;
+            font-size:60px;
         }
     </style>
       
@@ -73,7 +74,7 @@
       <a href="?page={{first_page}}"><<</a>
       <a href="#">{{courses.previous_page_number}}</a>
       <a href="?page={{courses.previous_page_number}}"><  </a>
-      <a href="#">{{courses.number}}</a>
+      <a href="#" class="dimmed">{{courses.number}}</a>
       <a href="?page={{courses.next_page_number}}">></a>
       <a href="#">{{courses.next_page_number}}</a>
       <a href="?page={{last_page}}">>></a>
