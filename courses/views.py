@@ -10,6 +10,8 @@ def courses(request ,cat = None,teacher = None):
         course = Course.objects.filter(category__name=cat)
     elif teacher:
         course = Course.objects.filter(teacher__info__username = teacher)
+    elif request.GET.get('search'):
+        course = Course.objects.filter(content__contains=request.GET.get('search'))
     else:
         course = Course.objects.filter(status=True)
 

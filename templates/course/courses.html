@@ -14,7 +14,7 @@
       </div>
     </div><!-- End Breadcrumbs --><br>
     <div class="single-sidebar-widget search-widget" align="center">
-      <form class="search-form" action="#">
+      <form class="search-form" action={% url 'courses:course_search' %}>
           <input placeholder="Search Posts" name="search" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search Posts'">
           <button type="submit">click</button>
       </form>
