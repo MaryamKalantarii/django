@@ -9,5 +9,5 @@ urlpatterns = [
     path("category/<str:cat>",courses,name ="course_cat"),
     path("teacher/<str:teacher>",courses,name ="course_teacher"),
     path("search/",courses,name ="course_search"),
-
+    path("course-detail/<int:id>",course_detail,name="course_detail"),
 ]

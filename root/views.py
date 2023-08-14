@@ -55,3 +55,4 @@ def trainer(request):
         'category':category,
     }
     return render(request,"root/trainers.html", context=context)
+
