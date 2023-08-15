@@ -56,3 +56,40 @@ def trainer(request):
     }
     return render(request,"root/trainers.html", context=context)
 
+
+
+def course_detail(request,id):
+    try:
+        course = Course.objects.get(id=id)
+        id_list = []
+        courses = Course.objects.filter(status=True)
+        for cr in courses:
+            id_list.append(cr.id)
+
+        id_list.reverse()
+        
+        if id_list[0] == id :
+            next_course = Course.objects.get(id = id_list[1])
+            previous_course = None
+
+        elif id_list[-1] == id :
+            next_course = None
+            previous_course = Course.objects.get(id = id_list[-2])
+
+        else:
+            next_course = Course.objects.get(id=id_list[id_list.index(id)+1])
+            previous_course = Course.objects.get(id=id_list[id_list.index(id)-1])
+
+
+
+
+        course.counted_views +=1
+        course.save()
+    
+        context ={"course": course,
+                'next_course': next_course,
+                'previous_course': previous_course,
+        }
+        return render(request,'course/course-details.html',context=context)
+    except:
+        return render(request,'course/404.html')
