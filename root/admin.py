@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Services
+from .models import Services,NewsLetter,ContactUs
 
 # Register your models here.
 
@@ -11,3 +11,5 @@ class AdminServices(admin.ModelAdmin):
 
 
 admin.site.register(Services,AdminServices)
+admin.site.register(NewsLetter)
+admin.site.register(ContactUs)
