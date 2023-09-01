@@ -1,10 +1,11 @@
 from django.shortcuts import render, get_object_or_404,redirect
-from .models import Course
+from .models import Course,Comment
 from courses.models import Category
 from django.core.paginator import Paginator,PageNotAnInteger,EmptyPage
-from root.forms import NewsLetterForm
+from .forms import CommentForm
 from django.contrib import messages
 from root.models import NewsLetter
+
 
 
 def courses(request ,cat = None,teacher = None):
@@ -49,11 +50,11 @@ def courses(request ,cat = None,teacher = None):
             messages.add_message(request,messages.ERROR,'Invalid email address')
             return redirect('courses:courses')
 
-
 def course_detail(request,id):
     if request.method =='GET':
         try:
             course = Course.objects.get(id=id)
+            comments = Comment.objects.filter(which_course=id, status=True)
             id_list = []
             courses = Course.objects.filter(status=True)
             for cr in courses:
@@ -79,17 +80,18 @@ def course_detail(request,id):
             context ={"course": course,
                     'next_course': next_course,
                     'previous_course': previous_course,
+                    'comments': comments,
             }
             return render(request,'course/course-details.html',context=context)
         except:
             return render(request,'course/404.html')
+            
     elif request.method == 'POST':
-        form = NewsLetterForm(request.POST)
+        form = CommentForm(request.POST)
         if form.is_valid():
             form.save()
             messages.add_message(request,messages.SUCCESS,'your email submited successfully')
-            return redirect('courses:courses')
+            return redirect(request.path_info)
         else :
             messages.add_message(request,messages.ERROR,'Invalid email address')
-            return redirect('courses:courses')
-
+            return redirect(request.path_info)
