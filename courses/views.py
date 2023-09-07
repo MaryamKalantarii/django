@@ -126,3 +126,4 @@ def delete_comment(request, id):
     cid = comment.which_course.id
     comment.delete()
     return redirect (f'/courses/course-detail/{cid}')
+
