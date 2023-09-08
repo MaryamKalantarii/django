@@ -37,7 +37,6 @@ class Trainer(models.Model):
     
 
 
-
 class Course(models.Model):
     image = models.ImageField(upload_to='course',default='default.jpg')
     category = models.ManyToManyField(Category)
