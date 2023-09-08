@@ -11,4 +11,6 @@ urlpatterns = [
     path("search/",courses,name ="course_search"),
     path("course-detail/<int:id>",course_detail,name="course_detail"),
     path("<int:id>",delete_comment,name="delete"),
+    path("edit/comment/<int:id>",edit,name="edit"),
+    path("comment/reply/<int:id>",reply,name="reply"),
 ]

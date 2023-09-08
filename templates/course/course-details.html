@@ -105,12 +105,17 @@
                       {{comment.message}}
                       </p>
                       <a type='button' href={% url 'courses:delete' id=comment.id %}>Delete</a>
-                      <a type='button' href='#'>Edit</a>
+                      <a type='button' href={% url 'courses:edit' id=comment.id %}>Edit</a>
                     </div> 
 
                   </div>
                   <div class="reply-btn">
-                    <a href="" class="btn-reply text-uppercase">reply</a>
+                    <p><a href={% url 'courses:reply' id=comment.id %} class="btn-reply text-uppercase">reply</a></p>
+                    {% for rp in reply %}
+                      {% if rp.which_comment.id == comment.id %}
+                          <p>{{rp.name}}:{{rp.message}}</p>
+                      {% endif %}
+                    {% endfor %}
                   </div>
                 </div>
               </div>
