@@ -36,6 +36,15 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+  <style>
+    li img{
+      width:20%;
+      {% comment %} margin:10px; {% endcomment %}
+    }
+    .loged{
+      margin-left:70px;
+    }
+  </style>
 </head>
 <body>
 
@@ -43,7 +52,7 @@
     <header id="header" class="fixed-top">
       <div class="container d-flex align-items-center">
   
-        <h1 class="logo me-auto"><a href="{% url 'root:home' %}">Mentor</a></h1>
+        <h1 class="logo me-auto" style='color:blue;font-family:B Titr;font-size:25;'><a href="{% url 'root:home' %}">Mentor </a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="{% url 'root:home' %}" class="logo me-auto"><img src="{% static 'assets/img/logo.png' %}" alt="" class="img-fluid"></a>-->
   
@@ -59,21 +68,37 @@
                 {% for cat in category %}
                 <li><a href={% url 'courses:course_cat' cat=cat.name %}>{{cat.name}}</a></li>
                 {% endfor %}
-               
+
               </ul>
             </li>
-            <li><a href="#">Login</a></li>
-            <li><a href="#">Signup</a></li>
+            {% if request.user.is_authenticated %}
+            <li class="loged">loged as {{request.user.username}}</li>
+            <li><img src={{request.user.image.url}}></li>
+            <li><a href={% url 'accounts:logout' %}>Logout</a></li>
+            <li><a href={% url 'password_change' %}>change password</a></li>
+            {% else %}
+            <li><a href={% url 'accounts:login' %}>Login</a></li>
+            <li><a href={% url 'accounts:signup' %}>signup</a></li>
+            {% endif %}
+
           </ul>
           <i class="bi bi-list mobile-nav-toggle"></i>
         </nav><!-- .navbar -->
-  
       </div>
     </header><!-- End Header -->
 
     {% block 'content'  %}
 
     {% endblock 'content' %}
+
+
+
+
+
+
+
+
+
 
 
 
@@ -121,17 +146,17 @@
           <div class="col-lg-4 col-md-6 footer-newsletter">
             <h4>Join Our Newsletter</h4>
             <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
-            
+
             {% if messages %}
-            {% for message in messages %}
-              <p style='color:green'>{{ message}}</p>
-            {% endfor %}
-          {% endif %}
-          <form method="post">
-            {% csrf_token %}
-            <input type="email" name="email">
-            <input type="submit" value="Subscribe">
-          </form>
+              {% for message in messages %}
+                <p style='color:green'>{{ message}}</p>
+              {% endfor %}
+            {% endif %}
+            <form  method="post">
+              {% csrf_token %}
+              <input type="email" name="email">
+              <input type="submit" value="Subscribe">
+            </form>
           </div>
 
         </div>

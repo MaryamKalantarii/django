@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from accounts.models import CustomeUser
 import datetime
 
 
@@ -20,7 +20,7 @@ class Skills(models.Model):
 
 
 class Trainer(models.Model):
-    info = models.ForeignKey(User , on_delete=models.CASCADE)
+    info = models.ForeignKey(CustomeUser, on_delete=models.CASCADE)
     skills = models.ManyToManyField(Skills)
     description = models.TextField()
     image = models.ImageField(upload_to='trainer', default='teacher.png')

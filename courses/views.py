@@ -1,3 +1,4 @@
+
 from django.shortcuts import render, get_object_or_404,redirect
 from .models import Course,Comment,Reply
 from courses.models import Category
@@ -6,6 +7,7 @@ from .forms import CommentForm, ReplyForm
 from django.contrib import messages
 from root.models import NewsLetter
 from root.forms import NewsLetterForm
+
 
 
 

@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from .models import Services,NewsLetter
 from courses.models import Course,Trainer
 from courses.models import Category
-from django.contrib.auth.models import User
+from accounts.models import CustomeUser
 from .forms import NewsLetterForm,ContactUsForm
 from django.contrib import messages
 
@@ -13,10 +13,11 @@ from django.contrib import messages
 def home (request):
     if request.method == 'GET':
         service_count = Services.objects.filter(status = True).count()
-        course_count = Services.objects.filter(status = True).count()
-        trainer_count = Services.objects.filter(status = True).count()
-        user_count = Services.objects.filter(status = True).count()
+        course_count = Course.objects.filter(status = True).count()
+        trainer_count = Trainer.objects.filter(status = True).count()
+        user_count = CustomeUser.objects.filter(is_active=True).count()
         category = Category.objects.all()
+
         services = Services.objects.filter(status=True)
         last_three_course = Course.objects.filter(status=True)[:3]
         last_three_trainer = Trainer.objects.filter(status=True)[:3]
