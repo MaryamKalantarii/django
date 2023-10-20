@@ -47,7 +47,7 @@ class Course(models.Model):
     counted_views = models.IntegerField(default=0)
     counted_like = models.IntegerField(default=0)
     available_seat = models.IntegerField(default=0)
-    schedule = models.DateTimeField(default=datetime.datetime.now())
+    schedule = models.DateTimeField(default=datetime.datetime.now)
     status = models.BooleanField(default=False)
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)

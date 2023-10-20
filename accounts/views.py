@@ -15,22 +15,15 @@ def Login(request):
     elif request.method == 'GET':
         form = AuthenticationForm()
         return render(request,'registration/login.html', context={'form': form})
-    elif request.method == 'POST':
-        if '@' in request.POST.get('username'):
-            try:
-                username = CustomeUser.objects.get(email=request.POST.get('username').strip()).username
-            except:
-                messages.add_message(request, messages.ERROR, 'Invalid username or password')
-                return redirect(request.path_info)
-        else:
-            username = request.POST.get('username').strip()
+    elif request.method == 'POST': 
+        email = request.POST.get('email').strip()
         password = request.POST.get('password')      
-        user = authenticate(username=username, password=password)
+        user = authenticate(email=email, password=password)
         if user is not None:
             login(request,user)
             return redirect('/')
         else:
-            messages.add_message(request, messages.ERROR, 'Invalid username or password')
+            messages.add_message(request, messages.ERROR, 'Invalid email or password')
             return redirect(request.path_info)
 
 @login_required
@@ -49,17 +42,17 @@ def signup(request):
         form = CustomUserCreation(request.POST,request.FILES)
         if form.is_valid():
             form.save()
-            username = request.POST.get('username')
+            email = request.POST.get('email')
             password = request.POST.get('password1')
-            user = authenticate(username=username, password=password)
+            user = authenticate(email=email, password=password)
             if user is not None:
                 login(request,user)
                 return redirect('/')
             else:
-                messages.add_message(request, messages.ERROR, 'Invalid username or password')
+                messages.add_message(request, messages.ERROR, 'Invalid email or password')
                 return redirect(request.path_info)
         else:
-            messages.add_message(request, messages.ERROR, 'Invalid username or password')
+            messages.add_message(request, messages.ERROR, 'Invalid email or password')
             return redirect(request.path_info)
         
 
