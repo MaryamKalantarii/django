@@ -40,7 +40,8 @@ class CustomeUser(AbstractBaseUser,PermissionsMixin):
     is_superuser = models.BooleanField(default=False)
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
-
+    is_verified = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS =[]
 
@@ -48,3 +49,15 @@ class CustomeUser(AbstractBaseUser,PermissionsMixin):
 
     def __str__(self):
         return self.email
+    
+
+class Profile(models.Model):
+    user = models.ForeignKey(CustomeUser , on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='users',default='user.jpg')
+    phone = models.CharField(max_length=20 ,null=True ,blank=True)
+    address = models.CharField(max_length=100,null=True,blank=True)
+
+    def __str__(self):
+        return self.user.email

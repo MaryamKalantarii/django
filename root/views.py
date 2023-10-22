@@ -15,7 +15,7 @@ def home (request):
         service_count = Services.objects.filter(status = True).count()
         course_count = Course.objects.filter(status = True).count()
         trainer_count = Trainer.objects.filter(status = True).count()
-        user_count = CustomeUser.objects.filter(is_active=True).count()
+        
         category = Category.objects.all()
 
         services = Services.objects.filter(status=True)
@@ -29,7 +29,6 @@ def home (request):
             'sc':service_count,
             'cc':course_count,
             'tc':trainer_count,
-            'uc':user_count,
         }
         return render(request,"root/index.html" , context=context)
     elif request.method == 'POST':
