@@ -61,7 +61,7 @@ def edit_profile(request):
         form = EditProfile(request.POST,instance=profile)
         if form.is_valid():
             form.save()
-            request.user.is_verified = True
+            request.is_verified = True
     return redirect('/')
 
 
