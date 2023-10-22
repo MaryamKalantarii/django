@@ -56,10 +56,11 @@ def edit_profile(request):
         form = EditProfile()
         return render(request,'registration/edit_profile.html', context={'form': form})
     elif request.method == 'POST':
-        customeuser=CustomeUser.objects.get()
-        form = CustomUserCreation(isinstance=customeuser)
+        form = EditProfile(request.POST, instance=request.user)
         form.is_valid()
         form.save()
+        request.user.is_verified = True
+        request.user.save()
         context ={
             'form': form,
         }
