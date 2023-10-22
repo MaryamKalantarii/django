@@ -3,7 +3,7 @@ from .forms import CustomUserCreation
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .models import CustomeUser
+from .models import CustomeUser,Profile
 from .forms import AuthenticationForm,EditProfile
 
 
@@ -52,19 +52,17 @@ def signup(request):
         
 
 def edit_profile(request):
+    user_id = request.user.id
+    profile = Profile.objects.get(user_id=user_id)
     if request.method == 'GET':
-        form = EditProfile()
+        form = EditProfile(instance=profile)
         return render(request,'registration/edit_profile.html', context={'form': form})
     elif request.method == 'POST':
-        form = EditProfile(request.POST, instance=request.user)
-        form.is_valid()
-        form.save()
-        request.user.is_verified = True
-        request.user.save()
-        context ={
-            'form': form,
-        }
-    return render(request,'registration/edit_profile.html', context={'form': form})
+        form = EditProfile(request.POST,instance=profile)
+        if form.is_valid():
+            form.save()
+            request.user.is_verified = True
+    return redirect('/')
 
 
 # Create your views here.
