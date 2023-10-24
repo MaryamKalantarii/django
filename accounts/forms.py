@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from .models import CustomeUser,Profile
+from django.forms import HiddenInput
 
 
 class CustomUserCreation(UserCreationForm):
@@ -29,3 +30,6 @@ class EditProfile(forms.ModelForm):
     class Meta:
         model = Profile
         fields = [ 'user','first_name', 'last_name', 'image', 'phone', 'address']
+        widgets = {
+            'user': HiddenInput(),
+        }

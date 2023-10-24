@@ -51,6 +51,7 @@ def signup(request):
             return redirect(request.path_info)
         
 
+
 def edit_profile(request):
     user_id = request.user.id
     profile = Profile.objects.get(user_id=user_id)
@@ -58,11 +59,15 @@ def edit_profile(request):
         form = EditProfile(instance=profile)
         return render(request,'registration/edit_profile.html', context={'form': form})
     elif request.method == 'POST':
-        form = EditProfile(request.POST,instance=profile)
+        # form = EditProfile(request.POST,instance=profile)
+        
+        form = EditProfile(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
-            request.is_verified = True
+            request.user.is_verified = True
+            request.user.save()
     return redirect('/')
+
 
 
 # Create your views here.
