@@ -134,7 +134,7 @@
                   <p class="price">${{cr.price}}</p>
                 </div>
                 {% for sk in cr.teacher.skills.all  %}
-                <h3><a href="{% url 'courses:course_detail' id=cr.id %}">{{sk.name}}</a></h3>
+                <h3><a href="course-details.html">{{sk.name}}</a></h3>
                 {% endfor %}
                 <p>{{cr.teacher.description}}</p>
                 <div class="trainer d-flex justify-content-between align-items-center">

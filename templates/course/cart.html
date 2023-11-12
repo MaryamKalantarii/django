@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block 'title' %}payment{% endblock 'title' %}
+{% block 'content' %}
+<br><br><br><br><br><br><br><br><br>
+    <style>
+        .back{
+            border: 2px solid rgb(72, 136, 62);
+            width: 50%;
+            height: 50%;
+           margin: 50px auto;
+           border-radius: 20px;
+           text-align: center;
+           position: relative;
+           background-color: bisque;
+        }
+       .back p{
+           display: inline-flex;
+        }
+        p img{
+           
+            border-radius: 20px;
+            width: 50%;
+            height:50%;
+           margin:20px ; 
+        }
+        .p{
+          position: absolute;
+           left: 60%;
+           top: 40%;
+           font-size: 30px;
+           font-family: Arial, Helvetica, sans-serif;
+        }
+        .p2{
+            position: absolute;
+           left: 70%;
+           top: 40%;
+           font-size: 30px;
+           font-family: Arial, Helvetica, sans-serif;
+
+        }
+        .c{
+            border: 2px solid rgb(72, 136, 62);
+            width: 60%;
+            height:200px;
+           margin: 40px auto;
+           border-radius: 20px;
+           text-align: center;
+           position: relative;
+           background-color: bisque;
+           font-size: 40px ;
+        }
+      .c a:hover{
+        color: black;
+      }
+      button{ border-radius: 10px;
+        background-image: linear-gradient(45deg,#A084DC,#EBC7E6);
+        font-size: 30px;
+        border: white;
+    }
+    button:hover{
+        background-image: linear-gradient(45deg,#ea9168,#f0340a);
+        color: white;
+        
+       
+      }
+    </style>
+{% for  product in cart %}
+    <div class="back">
+    <p class="p" >{{product.product_object.title}} :</p>
+    <p class="p2">{{ product.product_object.price }}$</p>
+    <p><img src={{ product.product_object.image.url }}></p>
+
+</div>
+
+{% endfor %}
+
+<div  class="c">
+    <p>Number of products: {{cart|length}}</p>
+    <a href="#"> payment and go to paymen site: {{ cart.get_total_price_one_quantity }}$</a>
+    <a href={% url "order:order" %} class="btn btn-primary">Submit Payment</a> 
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Clear Cart</button>
+        </form>
+    
+</div>
+<br><br>
+{% endblock 'content' %} 
+
+

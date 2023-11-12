@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'courses',
     'accounts',
     'robots',
+    'order',
+    'payment',
 ]
 
 SITE_ID = 1
@@ -74,6 +76,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'courses.context_processors.cart',
             ],
         },
     },
@@ -142,3 +145,4 @@ STATICFILES_DIRS =[
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 AUTH_USER_MODEL ='accounts.CustomeUser'
+SANDBOX = True
