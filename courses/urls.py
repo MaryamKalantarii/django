@@ -11,6 +11,7 @@ urlpatterns = [
     path("search/",CourseListView.as_view(),name="course_search"),
     path("course-detail/<int:pk>",CourseDetailView.as_view(),name="course_detail"),
     path("payment",PaymentView.as_view(),name="cart"),
+    path("api-test/",api_test,name="cart"),
     # path("", courses,name='courses'),
     # path("category/<str:cat>",courses,name ="course_cat"),
     # path("teacher/<str:teacher>",courses,name ="course_teacher"),

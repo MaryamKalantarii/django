@@ -37,6 +37,7 @@ urlpatterns = [
     path('robots.txt/', include("robots.urls")),
     path('order/', include("order.urls")),
     path('payment/', include("payment.urls")),
+    path('api-auth/', include('rest_framework.urls'))
 ]
 
 

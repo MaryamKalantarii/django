@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'robots',
     'order',
     'payment',
+    'rest_framework',
 ]
 
 SITE_ID = 1

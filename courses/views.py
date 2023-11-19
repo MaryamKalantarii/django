@@ -11,6 +11,8 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView,TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .cart import Cart
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
 class CourseListView(ListView):
     
@@ -217,3 +219,9 @@ def reply(request, id):
         else:
             messages.add_message(request,messages.ERROR,'chete baba ba in data dadanet .... zereshk')
             return redirect (request.path_info)
+        
+@api_view()
+def api_test(request):
+    return Response({
+        "name": "test",
+    })
