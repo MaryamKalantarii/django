@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path , include
 from .views import *
 
 
@@ -20,4 +20,5 @@ urlpatterns = [
     path("<int:id>",delete_comment,name="delete"),
     path("edit/comment/<int:id>",edit,name="edit"),
     path("comment/reply/<int:id>",reply,name="reply"),
+    path("api/V1/",include('courses.api.V1.urls')),
 ]
